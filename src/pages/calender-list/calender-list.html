@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar <color="primary">
+  <ion-navbar color="primary">
     <ion-title>{{ calName }}</ion-title>
   </ion-navbar>
 
@@ -14,13 +14,10 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-icon name="calendar"></ion-icon>Sart : {{ ev.startDate }}
+        <ion-icon name="calendar"></ion-icon> Sart : {{ parseDate(ev.dtstart) }}
       </ion-item>
       <ion-item>
-        <ion-icon name="calendar"></ion-icon>End : {{ ev.endDate }}
-      </ion-item>
-      <ion-item>
-        <ion-icon name="locate"></ion-icon> {{ ev.location }}
+        <ion-icon name="calendar"></ion-icon> End : {{  parseDate(ev.dtend) }}
       </ion-item>
     </ion-card-content>
   </ion-card>

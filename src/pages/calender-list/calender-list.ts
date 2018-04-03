@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 
 @IonicPage()
@@ -10,7 +10,7 @@ import { Calendar } from '@ionic-native/calendar';
 export class CalenderListPage {
   calName = '';
   events = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams ,private calender:Calendar, private platform:Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams ,private calender:Calendar, private platform:Platform,private toastCtrl:ToastController) {
     this.calName = this.navParams.get('name');
     if(this.platform.is('ios')){
       this.calender.findAllEventsInNamedCalendar(this.calName).then( data =>{
@@ -28,6 +28,23 @@ export class CalenderListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalenderListPage');
+  }
+
+  parseDate(date){
+    return new Date(date).toLocaleString();
+  }
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }
